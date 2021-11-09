@@ -30,8 +30,8 @@ public class PersonBean {
 
     public String getResult() {
         if (age >= 18) {
-            return "Old person";
+            return "Name is " + name + " age is " + age + ". It's an Old person";
         }
-        return "Young person";
+        return "Name is " + name + " age is " + age + ". It's an Young person";
     }
 }
