@@ -14,4 +14,14 @@
     <servlet-name>TestingServlet1</servlet-name>
     <url-pattern>/hello</url-pattern>
   </servlet-mapping>
+
+  <servlet>
+    <servlet-name>JSTLServlet</servlet-name>
+    <servlet-class>ru.webproject.test1.JSTLServlet1</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>JSTLServlet</servlet-name>
+    <url-pattern>/jstl</url-pattern>
+  </servlet-mapping>
 </web-app>
