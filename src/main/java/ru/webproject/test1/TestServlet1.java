@@ -12,5 +12,6 @@ public class TestServlet1 extends HttpServlet {
         PrintWriter pw = response.getWriter();
         pw.println("<h1>Hello!</h1>");
         pw.println("<ol><li>test1</li><li>test2</li></ol");
+        pw.println("<strong><a href=\"index.jsp\">Back to main page</a></strong>");
     }
 }
