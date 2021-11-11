@@ -60,10 +60,6 @@ public class PersonJDBCDao {
         return person;
     }
 
-    public PersonJDBC show() {
-        return null;
-    }
-
     public void insert(PersonJDBC person) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO Person VALUES(?,?,?,?)");
@@ -79,10 +75,14 @@ public class PersonJDBCDao {
     }
 
     public void update(int id, PersonJDBC updPerson) {
-
+        //Prepared statement commands
+        //UPDATE Person SET name=?, age=?, email=? WHERE id=?
+        // .executeUpdate()
     }
 
     public void delete(int id) {
-
+        //Prepared statement commands
+        //DELETE FROM Person WHERE id=?
+        // .executeUpdate()
     }
 }
