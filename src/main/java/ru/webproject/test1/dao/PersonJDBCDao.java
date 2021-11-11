@@ -42,38 +42,38 @@ public class PersonJDBCDao {
         }
     }
 
-    public List<PersonJDBC> index() {
-        List<PersonJDBC> people = new ArrayList<>();
+    public PersonJDBC showUser(int user_id) {
+        PersonJDBC person = new PersonJDBC();
         try {
-            Statement statement = connection.createStatement();
-            String SQL = "SELECT * FROM Person";
-            ResultSet resultSet = statement.executeQuery(SQL);
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT name,age,email FROM Person WHERE id = ?");
+            preparedStatement.setInt(1, user_id);
+            ResultSet resultSet = preparedStatement.executeQuery();
 
-            while (resultSet.next()) {
-                PersonJDBC person = new PersonJDBC();
-                person.setId(resultSet.getInt("id"));
-                person.setName(resultSet.getString("name"));
-                person.setAge(resultSet.getInt("age"));
-                person.setEmail(resultSet.getString("email"));
-                people.add(person);
-            }
+            person.setId(resultSet.getInt("id"));
+            person.setName(resultSet.getString("name"));
+            person.setAge(resultSet.getInt("age"));
+            person.setEmail(resultSet.getString("email"));
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return people;
+        return person;
     }
 
     public PersonJDBC show() {
         return null;
     }
 
-    public void save(PersonJDBC person) {
+    public void insert(PersonJDBC person) {
         try {
-            Statement statement = connection.createStatement();
-            String SQL = "INSERT INTO Person VALUES(" + count + ",'" + person.getName() +
-                    "'," + person.getAge() + ",'" + person.getEmail() + "')";
-        }
-        catch (SQLException e){
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO Person VALUES(?,?,?,?)");
+            preparedStatement.setInt(1, ++count);
+            preparedStatement.setString(2, person.getName());
+            preparedStatement.setInt(3, person.getAge());
+            preparedStatement.setString(4, person.getEmail());
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
